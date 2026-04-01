@@ -18,18 +18,29 @@
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         }
 
-        /* Estilos específicos para asegurar que el mapa se vea */
-        .map-container {
+        /* Contenedor del mapa con altura forzada */
+        .map-wrapper {
             position: relative;
             width: 100%;
-            height: 450px; /* Altura fija para escritorio */
-            background-color: #e5e7eb;
+            height: 500px;
+            background-color: #f3f4f6;
+            border-radius: 1rem;
             overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: 0;
         }
 
         @media (max-width: 768px) {
-            .map-container {
-                height: 350px; /* Altura ajustada para móvil */
+            .map-wrapper {
+                height: 350px;
             }
         }
 
@@ -71,14 +82,14 @@
 <body class="bg-gray-50 text-gray-900">
 
     <!-- Capa 1: Banner de Cookies -->
-    <div id="cookie-banner" class="flex flex-col md:flex-row items-center justify-between px-6 py-4 shadow-2xl">
+    <div id="cookie-banner" class="flex flex-col md:flex-row items-center justify-between px-6 py-4 shadow-2xl border-t border-gray-700">
         <div class="text-sm mb-4 md:mb-0 pr-4">
-            Usamos cookies para mejorar tu experiencia. Al navegar, aceptas nuestra 
-            <button onclick="showLegal('cookies')" class="underline hover:text-blue-400">política de cookies</button>.
+            Utilizamos cookies para asegurar que damos la mejor experiencia al usuario en nuestra web. 
+            <button onclick="showLegal('cookies')" class="underline hover:text-blue-400">Leer política de cookies</button>.
         </div>
         <div class="flex space-x-3">
-            <button onclick="acceptCookies()" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-semibold transition whitespace-nowrap">Aceptar</button>
-            <button onclick="showLegal('cookies')" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm transition">Configurar</button>
+            <button onclick="acceptCookies()" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-semibold transition whitespace-nowrap">Aceptar todas</button>
+            <button onclick="showLegal('cookies')" class="text-gray-400 hover:text-white text-sm transition">Configuración</button>
         </div>
     </div>
 
@@ -117,100 +128,139 @@
         <a href="#servicios" onclick="toggleMenu()">Servicios</a>
         <a href="#nosotros" onclick="toggleMenu()">Ubicación</a>
         <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+        <a href="tel:876280630" class="text-blue-600"><i class="fas fa-phone mr-2"></i>Llamar</a>
     </div>
 
     <!-- Hero -->
     <section id="inicio" class="pt-32 pb-20 gradient-bg text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
             <div class="space-y-8">
-                <h1 class="text-5xl font-extrabold leading-tight">Reparamos tu móvil en el acto.</h1>
-                <p class="text-xl text-blue-100">Servicio técnico express en Zaragoza. Pantallas, baterías y cualquier avería con garantía profesional.</p>
+                <div class="inline-block bg-white/20 px-4 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">
+                    Servicio Técnico en Zaragoza
+                </div>
+                <h1 class="text-5xl font-extrabold leading-tight">Reparamos tu móvil o tablet en el acto.</h1>
+                <p class="text-xl text-blue-100">Expertos en iPhone, Samsung y Xiaomi. Cambio de pantalla, batería y conectores con garantía total de 6 meses.</p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#contacto" class="bg-white text-blue-900 px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:scale-105 transition">Pedir Cita</a>
-                    <a href="https://wa.me/34876280630" target="_blank" class="bg-green-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:scale-105 transition flex items-center">
-                        <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                    <a href="#contacto" class="bg-white text-blue-900 px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:bg-blue-50 transition">Presupuesto Gratis</a>
+                    <a href="https://wa.me/34876280630" target="_blank" class="bg-green-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:bg-green-600 transition flex items-center">
+                        <i class="fab fa-whatsapp mr-2 fa-lg"></i>WhatsApp
                     </a>
                 </div>
             </div>
-            <div class="hidden md:block">
-                <img src="https://images.unsplash.com/photo-1581092921461-eab62e92c73e?auto=format&fit=crop&q=80&w=600" alt="Reparación de móvil" class="rounded-3xl shadow-2xl">
+            <div class="hidden md:block relative">
+                <div class="absolute inset-0 bg-blue-400 rounded-full blur-3xl opacity-20"></div>
+                <img src="https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?auto=format&fit=crop&q=80&w=800" alt="Técnico reparando dispositivo" class="rounded-3xl shadow-2xl relative z-10">
             </div>
         </div>
     </section>
 
-    <!-- Sección del MAPA (Ubicación) -->
-    <section id="nosotros" class="py-20 bg-white">
+    <!-- Sección UBICACIÓN Y MAPA -->
+    <section id="nosotros" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">¿Dónde encontrarnos?</h2>
-                <p class="text-gray-600">Estamos en el barrio de San José, ven a vernos.</p>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">¿Dónde estamos?</h2>
+                <div class="w-20 h-1.5 bg-blue-600 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 text-lg">Visítanos en nuestra tienda física en el centro de Zaragoza.</p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8 bg-gray-50 p-4 rounded-3xl shadow-inner border">
-                <!-- Info de contacto lateral -->
-                <div class="md:col-span-1 p-8 space-y-8 flex flex-col justify-center">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-blue-600 text-white p-3 rounded-full">
-                            <i class="fas fa-map-pin"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold">Dirección</p>
-                            <p class="text-gray-600">Cam. de las Torres, 99, 50007 Zaragoza</p>
+            <div class="grid lg:grid-cols-3 gap-12 items-start">
+                <!-- Información de Contacto -->
+                <div class="space-y-8">
+                    <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-6 text-blue-900">Datos de Contacto</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-blue-100 text-blue-600 p-3 rounded-xl">
+                                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Dirección</p>
+                                    <p class="text-gray-600 italic">Camino de las Torres, 99</p>
+                                    <p class="text-gray-600">50007 Zaragoza</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-blue-100 text-blue-600 p-3 rounded-xl">
+                                    <i class="fas fa-clock fa-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Horario Comercial</p>
+                                    <p class="text-gray-600">Lunes a Viernes</p>
+                                    <p class="text-gray-600">10:00 - 14:00 | 17:00 - 20:30</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-blue-100 text-blue-600 p-3 rounded-xl">
+                                    <i class="fas fa-phone-alt fa-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Llámanos</p>
+                                    <a href="tel:876280630" class="text-blue-600 font-bold text-xl">876 28 06 30</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-blue-600 text-white p-3 rounded-full">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold">Horario</p>
-                            <p class="text-gray-600">Lun-Vie: 10:00-14:00 / 17:00-20:30</p>
-                        </div>
-                    </div>
-                    <a href="https://www.google.com/maps/dir//Mobile+Zone+Zaragoza" target="_blank" class="w-full bg-blue-900 text-white py-4 rounded-xl font-bold text-center hover:bg-black transition">
-                        <i class="fas fa-location-arrow mr-2"></i>Cómo llegar
+                    <a href="https://www.google.com/maps/dir//Mobile+Zone+Zaragoza" target="_blank" class="flex items-center justify-center w-full bg-gray-900 text-white py-4 rounded-2xl font-bold hover:bg-blue-900 transition shadow-lg">
+                        <i class="fas fa-directions mr-2"></i> Abrir en Google Maps
                     </a>
                 </div>
 
-                <!-- EL MAPA INTERACTIVO -->
-                <div class="md:col-span-2 rounded-2xl overflow-hidden shadow-lg border-4 border-white map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m1!2sMobile+Zone!2sCam.+de+las+Torres,+99,+50007+Zaragoza!5m2!1ses!2ses" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Google Maps Mobile Zone">
-                    </iframe>
+                <!-- EL MAPA INTERACTIVO (FORZADO) -->
+                <div class="lg:col-span-2">
+                    <div class="map-wrapper border-4 border-white shadow-2xl">
+                        <!-- Mapa con URL de búsqueda directa para evitar errores de carga -->
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Mobile%20Zone%20Camino%20de%20las%20Torres%2099%20Zaragoza&t=&z=17&ie=UTF8&iwloc=&output=embed" 
+                            frameborder="0" 
+                            scrolling="no" 
+                            marginheight="0" 
+                            marginwidth="0"
+                            loading="lazy"
+                            title="Mapa de Mobile Zone Zaragoza">
+                        </iframe>
+                    </div>
+                    <p class="text-center text-sm text-gray-400 mt-4 italic">
+                        <i class="fas fa-info-circle mr-1"></i> Si el mapa no carga, pulsa el botón "Abrir en Google Maps".
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer con Elementos Legales -->
+    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-12">
             <div class="col-span-2">
-                <h3 class="text-white text-xl font-bold mb-4">MOBILE ZONE</h3>
-                <p>Especialistas en telefonía móvil y telecomunicaciones en Zaragoza desde hace años. Calidad y rapidez garantizada.</p>
+                <div class="flex items-center space-x-2 text-white mb-6">
+                    <i class="fas fa-mobile-alt text-blue-500 fa-lg"></i>
+                    <span class="text-2xl font-bold">MOBILE ZONE</span>
+                </div>
+                <p class="mb-6 max-w-sm">Tu servicio técnico de confianza en el barrio de San José. Reparaciones garantizadas con repuestos de alta calidad y atención personalizada.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:text-white hover:bg-blue-600 transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:text-white hover:bg-pink-600 transition"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-4">Información Legal</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><button onclick="showLegal('aviso')" class="hover:text-blue-400">Aviso Legal</button></li>
-                    <li><button onclick="showLegal('privacidad')" class="hover:text-blue-400">Política de Privacidad</button></li>
-                    <li><button onclick="showLegal('cookies')" class="hover:text-blue-400">Política de Cookies</button></li>
+                <h4 class="text-white font-bold mb-6">Legalidad</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><button onclick="showLegal('aviso')" class="hover:text-blue-400 transition">Aviso Legal</button></li>
+                    <li><button onclick="showLegal('privacidad')" class="hover:text-blue-400 transition">Política de Privacidad</button></li>
+                    <li><button onclick="showLegal('cookies')" class="hover:text-blue-400 transition">Política de Cookies</button></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-4">Contacto</h4>
-                <p class="text-sm">Camino de las Torres 99<br>50007 Zaragoza<br>Telf: 876 28 06 30</p>
+                <h4 class="text-white font-bold mb-6">Horario</h4>
+                <p class="text-sm leading-relaxed">
+                    Lunes - Viernes:<br>
+                    10:00h a 14:00h<br>
+                    17:00h a 20:30h<br>
+                    Sábados y Domingos: Cerrado
+                </p>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-center text-xs">
-            &copy; 2024 Mobile Zone. Todos los derechos reservados.
+            <p>&copy; 2024 Mobile Zone Zaragoza. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -220,53 +270,53 @@
             <button onclick="hideLegal()" class="absolute top-4 right-4 text-gray-500 hover:text-black">
                 <i class="fas fa-times fa-xl"></i>
             </button>
-            <div id="legal-text" class="prose max-w-none text-gray-700">
-                <!-- Contenido cargado dinámicamente -->
+            <div id="legal-text" class="prose prose-blue max-w-none text-gray-700">
+                <!-- Contenido dinámico -->
             </div>
         </div>
     </div>
 
     <script>
-        // Lógica del menú móvil
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('translate-x-full');
         }
 
-        // Lógica de Cookies
+        // Cookies
         window.onload = () => {
-            if (!localStorage.getItem('cookies_accepted')) {
+            if (!localStorage.getItem('cookies_v1')) {
                 document.getElementById('cookie-banner').style.display = 'flex';
             }
         };
 
         function acceptCookies() {
-            localStorage.setItem('cookies_accepted', 'true');
+            localStorage.setItem('cookies_v1', 'true');
             document.getElementById('cookie-banner').style.display = 'none';
         }
 
-        // Datos Legales (Primera Capa)
+        // Datos Legales
         const legalData = {
             aviso: `
-                <h2 class="text-2xl font-bold mb-4">Aviso Legal</h2>
-                <p><strong>Identidad del responsable:</strong> Mobile Zone Zaragoza</p>
-                <p><strong>Ubicación:</strong> Cam. de las Torres, 99, 50007 Zaragoza</p>
-                <p><strong>Actividad:</strong> Reparación de equipos de telecomunicaciones y venta de accesorios.</p>
-                <p class="mt-4">Este sitio web ha sido creado para facilitar información sobre los servicios técnicos prestados por Mobile Zone.</p>
+                <h2 class="text-2xl font-bold mb-4 text-blue-900">Aviso Legal</h2>
+                <p class="mb-4"><strong>Titular:</strong> Mobile Zone Zaragoza</p>
+                <p class="mb-4"><strong>CIF:</strong> Registro Mercantil de Zaragoza</p>
+                <p class="mb-4"><strong>Ubicación:</strong> Camino de las Torres, 99, 50007 Zaragoza</p>
+                <p>Este sitio web cumple con la Ley 34/2002 de Servicios de la Sociedad de la Información. Los contenidos son meramente informativos sobre los servicios técnicos de reparación de dispositivos móviles.</p>
             `,
             privacidad: `
-                <h2 class="text-2xl font-bold mb-4">Política de Privacidad</h2>
-                <p>En cumplimiento del RGPD, le informamos que sus datos recogidos mediante formularios de contacto serán tratados únicamente para dar respuesta a sus consultas.</p>
-                <p>No cedemos datos a terceros salvo obligación legal. Tiene derecho a acceso, rectificación y supresión de sus datos personales solicitándolo en nuestro establecimiento.</p>
+                <h2 class="text-2xl font-bold mb-4 text-blue-900">Política de Privacidad</h2>
+                <p class="mb-4">De acuerdo con el RGPD, informamos que los datos suministrados por el usuario a través de llamadas o contacto directo serán tratados con el fin exclusivo de gestionar la reparación de su equipo.</p>
+                <p class="mb-4">No almacenamos bases de datos para fines comerciales masivos. Sus datos están protegidos y solo se conservan el tiempo legalmente obligatorio para la facturación.</p>
+                <p>Puede ejercer sus derechos de acceso, rectificación o cancelación en nuestro establecimiento físico.</p>
             `,
             cookies: `
-                <h2 class="text-2xl font-bold mb-4">Política de Cookies</h2>
-                <p>Utilizamos cookies propias y de terceros para analizar la navegación y mejorar la experiencia de usuario.</p>
-                <ul class="list-disc pl-5 my-4">
-                    <li>Cookies Técnicas: Imprescindibles para el funcionamiento.</li>
-                    <li>Cookies de Análisis: Para entender cómo se usa la web a través de Google Analytics.</li>
+                <h2 class="text-2xl font-bold mb-4 text-blue-900">Política de Cookies</h2>
+                <p class="mb-4">Este sitio web utiliza cookies técnicas para el funcionamiento de la página y cookies de análisis (Google Maps/Analytics) para mejorar la experiencia del usuario.</p>
+                <ul class="list-disc pl-5 mb-4 space-y-2">
+                    <li><strong>Cookies Técnicas:</strong> Permiten la navegación y el uso de las diferentes opciones o servicios.</li>
+                    <li><strong>Cookies de Terceros:</strong> El mapa interactivo de Google Maps requiere cookies para su correcta visualización.</li>
                 </ul>
-                <p>Puedes configurar o rechazar el uso de cookies a través de los ajustes de tu navegador.</p>
+                <p>Usted puede configurar su navegador para ser avisado en pantalla de la recepción de cookies y para impedir la instalación de cookies en su disco duro.</p>
             `
         };
 
@@ -281,7 +331,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Cerrar modal al hacer click fuera
         window.onclick = (e) => {
             const modal = document.getElementById('legal-modal');
             if (e.target === modal) hideLegal();
